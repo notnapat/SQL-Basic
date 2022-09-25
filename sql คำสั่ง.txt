@@ -76,6 +76,10 @@ WHERE fname IS NULL // == ใครที่ชื่อว่าง
 WHERE fname IS NULL AND lname	IS NULL // == ใครที่ชื่อว่าง และ นามสกุลว่าง
 WHERE fname NOT NULL  // == ใครที่ชื่อไม่ว่าง หรือ ไม่ว่าง
 
+	เรียงตัวอักษร พยันชนะ หรือตัวเลข ของข้อมูลจากน้อยไปมาก ASC , เรียงจากมากไปน้อย DESC
+WHERE fname NOT NULL AND lname NOT NULL // ถ้าไม่เจาะจง ไม่ต้องใส่
+ORDER BY ชื่อคอลัมน์ที่ต้องการเรีบงลำดับ ASC
+
 
 
 
