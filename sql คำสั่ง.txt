@@ -80,6 +80,14 @@ WHERE fname NOT NULL  // == ใครที่ชื่อไม่ว่าง 
 WHERE fname NOT NULL AND lname NOT NULL // ถ้าไม่เจาะจง ไม่ต้องใส่
 ORDER BY ชื่อคอลัมน์ที่ต้องการเรีบงลำดับ ASC
 
+	จำกัดจำนวนบรรทัดด้วย LIMIT หรือจำนวนบรรทัดที่ต้องการ
+FROM ชื่อ table
+LIMIT 4 // จำ นวนแถวที่ต้องการให้แสดง
+, FROM ขื่อ
+  WHERE lanme = 	"ใจดีดี"
+  ORDER BY employee_id DESC
+  LIMIT 2
+
 
 
 
