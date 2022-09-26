@@ -142,6 +142,16 @@ SUM(salary)  AS "ค่ารวมทั้งหมด"
 AVG(salary)  AS "ค่าเฉลี่ยของทั้งหมด"
 FORM ชื่อtable
 
+	CASE WHEN THEN ถ้าค่าไหนตรงตามตารางจะให้แสดงข้อมูลอะไรเพิ่ม
+SELECT salary(ชื่อคอลัมน์),
+(
+CASE salary WHEN 5000 THEN "aaa"  // ถ้าเงินเดือน 5000 ให้เป็น aaa ในคอลัมน์ใหม่
+WHEN 15000 THEN "BBB"   // ถ้าเงินเดือน 15000 ให้เป็น BBB 
+ELSE "ccc" END    // นอกเหนือจาก 5000 และ 15000 ให้เป็นค่า ccc 
+) AS  "ชื่อคอลัมน์ใหม่ที่จะให้แสดง"
+
+FROM Employee
+
 
 
 
