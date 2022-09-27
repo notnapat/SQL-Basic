@@ -225,6 +225,13 @@ SELECT products.product_name,products.price,categories.name
 FROM products,categories
 WHERE products.type_id = categories.id  // เชื่อมข้อมูล 2ตาราง ด้วยดีนอกของตารางหลัก และ คีหลักของตารางรอง
 
+	เชื่อมตารางด้วย คีนอก และ คีหลัก ใช้ WHERE ,GROUP BY ,HAVING ,ORDER BY ,LIMIT ร่วมกันได้
+SELECT products.product_name,products.price,categories.name  // คอลัมน์ที่จะให้แสดง
+FROM products INNER JOIN categories  // เชื่่อมคีนอก กับคีหลัก เข้าด้วยกันด้วย INNER JOIN
+ON products.type_id = categories.id  // เชื่่อมคีนอก กับคีหลัก เข้าด้วยกันด้วย INNER JOIN
+WHERE products.price>500  // สามารใส่เงื่อนไขได้ ใส่เงื่อนไขอื่นก็ได้ หรือ ไม่ใส่ก็ได้
+ORDER BY products.price ASC  // เงื่อนไข
+
 
 
 	
