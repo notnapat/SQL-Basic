@@ -249,6 +249,18 @@ SELECT products.product_name(หลัก),products.price(หลัก),categori
 FROM products(หลัก) RIGHT JOIN categories(ลอง)  // RIGHT JOIN
 ON products.type_id(ตารางหลัก คีนอก) = categories.id(ตารางรอง คีหลีก)
 
+	FULL JOIN เชื่อมตารางเข้าด้วยกัน ข้อมูลทั้งหมดของ2ตาราง ทั้งคีเชื่อม และไม่เชื่อม จะรวมเข้าด้วยกัน และแสดงทั้งหมด 
+	(เชื่อม LEFT JOIN กับ RIGHT เข้าด้วยกัน ด้วย UNION  ใช้ได้กับ SQL บางแอพ SQLite ใช้ไม่ได้)
+SELECT products.product_name,products.price,categories.name
+FROM products LEFT JOIN categories
+ON products.type_id = categories.id
+UNION     //  เชื่อม LEFT JOIN กับ RIGHT JOIN เข้าด้วยกัน ด้วย UNION)
+SELECT products.product_name,products.price,categories.name
+FROM products RIGHT JOIN categories
+ON products.type_id = categories.id
+	
+
+
 	
 
 
