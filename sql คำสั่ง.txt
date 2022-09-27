@@ -184,6 +184,12 @@ FROM Employee
 GROUP BY address
 HAVING SUM(aslary) >= 7000 AND COUNT(*) >=2  // แสดงแค่กลุ่มที่มีเงินรวม 7000 ขึ้นไป และ มี 2 คนขึ้นไป
 
+	Sub Query == เทียบข้อมูลกับอีกตาราง
+SELECT fname(main) , address(main)
+FROM Employee(main)
+WHERE address(main) = (SELECT city(sub) FROM Customer(sub) WHERE fname(sub) = "หิงห้อย" // สอบถามว่า ตารางmain มีใครอยู่ ที่เดียวกับ หิงห้อย ตารางsub ไหม
+
+
 
 
 
