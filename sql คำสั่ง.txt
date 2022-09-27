@@ -167,6 +167,15 @@ SELECT fname(ต้องการจะจัด) , COUNT(*) (ตัวนั�
 FROM ชื่อtable
 GROUP BY fname(รวมข้อมูลที่เหมื่อนกันมาอยู่ด้วยกัน)
 
+	GROUP BY ร่วมกับ MAX MIN AVG SUM
+SELECT address , COUNT(*),
+MAX(salary) ,
+MIN(salary) ,
+AVG(salary) ,
+SUM(salary) 
+FORM Employee
+GROUP BY address
+
 
 
 
