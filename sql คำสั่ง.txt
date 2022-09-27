@@ -176,6 +176,14 @@ SUM(salary)
 FORM Employee
 GROUP BY address
 
+	เงื่อนไขกลุ่มข้อมูล(HAVING)
+SELECT address ,
+COUNT(*) AS "จำนวน"
+SUM(salary) AS "เงินเดือนรวม"
+FROM Employee
+GROUP BY address
+HAVING SUM(aslary) >= 7000 AND COUNT(*) >=2  // แสดงแค่กลุ่มที่มีเงินรวม 7000 ขึ้นไป และ มี 2 คนขึ้นไป
+
 
 
 
