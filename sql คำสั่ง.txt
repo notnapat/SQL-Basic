@@ -243,6 +243,12 @@ FROM products LEFT JOIN categories
 ON products.type_id = categories.id
 WHERE products.type_id IS NULL  // ถามข้อมูลที่ไม่เชื่อมกันของ คีนอก และคีหลัก
 
+	RIGHT JOIN เชื่อมตารางด้วย คีนอก และคีหลัก ใช้ RIGHT JOIN จะแสดงข้อมูลของตารางรองทั้งหมด รวมทั้งที่ คีหลักไม่เชื่อม ก็นำมาแสดง แต่ตารางหลักจะแสดงแค่ที่คีเชื่อมกัน
+	(ใช้กับแอพ SQLite ไม่ได้ แต่ใช้กับแอพ SQL แอพอื่นได้)
+SELECT products.product_name(หลัก),products.price(หลัก),categories.name(ลอง)
+FROM products(หลัก) RIGHT JOIN categories(ลอง)  // RIGHT JOIN
+ON products.type_id(ตารางหลัก คีนอก) = categories.id(ตารางรอง คีหลีก)
+
 	
 
 
