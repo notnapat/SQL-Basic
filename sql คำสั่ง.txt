@@ -232,6 +232,10 @@ ON products.type_id = categories.id  // เชื่่อมคีนอก ก
 WHERE products.price>500  // สามารใส่เงื่อนไขได้ ใส่เงื่อนไขอื่นก็ได้ หรือ ไม่ใส่ก็ได้
 ORDER BY products.price ASC  // เงื่อนไข
 
+	เชื่อมตารางด้วย คีนอก และ คีหลัก ใช้ LEFT JOIN ข้อมูลตารางหลักจะถูกแสดง หรือรวมเข้าทั้งหมด ตัวที่ คีนอก และคี่หลักไม่เชื่อมกัน ก็นำมาแสดง
+SELECT products.product_name(หลัก),products.price(หลัก),categories.name(ลอง)
+FROM products(หลัก) LEFT JOIN categories(ลอง)
+ON products.type_id(ตารางหลัก คีนอก) = categories.id(ตารางรอง คีหลัก)
 
 
 	
