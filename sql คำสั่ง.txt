@@ -237,6 +237,11 @@ SELECT products.product_name(หลัก),products.price(หลัก),categori
 FROM products(หลัก) LEFT JOIN categories(ลอง)
 ON products.type_id(ตารางหลัก คีนอก) = categories.id(ตารางรอง คีหลัก)
 
+	OUTER JOIN สอบถามข้อมูลที่ไม่เชื่อมกัน ของคีนอก และคีหลัก
+SELECT products.product_name,products.price,categories.name
+FROM products LEFT JOIN categories
+ON products.type_id = categories.id
+WHERE products.type_id IS NULL  // ถามข้อมูลที่ไม่เชื่อมกันของ คีนอก และคีหลัก
 
 	
 
