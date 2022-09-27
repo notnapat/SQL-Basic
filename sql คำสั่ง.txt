@@ -189,6 +189,12 @@ SELECT fname(main) , address(main)
 FROM Employee(main)
 WHERE address(main) = (SELECT city(sub) FROM Customer(sub) WHERE fname(sub) = "หิงห้อย" // สอบถามว่า ตารางmain มีใครอยู่ ที่เดียวกับ หิงห้อย ตารางsub ไหม
 
+	สร้างตารางใหม่ด้วย Sub Query
+CREATE TABLE bestEmployee AS   // สร้างตารางใหม่ ด้วยข้อมูลข้างล่าง ข้อมูลตารางใหม่จะขึ้นอยู่กับเงื่อนไขข้างล่าง และผลลัพที่แสดงออกมา
+SELECT employee_id,lname ,address ,salary+10000 AS "salary"
+FROM Employee
+WHERE address = (SELECT address FROM Products_Place WHERE name = "cc")  //  สอบถามว่า ตารางmain มีใครอยู่ ที่เดียวกับ cc ตาราง sub ไหม
+AND salary>20000  // และแสดงแค่คนที่เงินเดือนมากกว่า 20000 
 
 
 
