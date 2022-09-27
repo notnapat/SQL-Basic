@@ -162,6 +162,12 @@ THEN 1
 ELSE 0 END AS "จำนวน"
 FROM Employee
 
+	จัดกลุมข้อมูลที่เหมือนกันด้วย GROUP BY 
+SELECT fname(ต้องการจะจัด) , COUNT(*) (ตัวนับ)
+FROM ชื่อtable
+GROUP BY fname(รวมข้อมูลที่เหมื่อนกันมาอยู่ด้วยกัน)
+
+
 
 
 
