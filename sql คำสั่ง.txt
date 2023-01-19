@@ -1,11 +1,19 @@
+ตัวอย่างใช้งานจริงอยู่ข้างล่าง
+
 โหลด SQLite >> sqlitebrowser.org
 
-INTEGER 	== จำ นวนเต็ม
+Convention of SQL  == ธรราเนียมของ SQL
+  ใช้คำ นามเอกพจน์ และตัวพิมพ์เล็กทั้งหมด ตั้งชื่อตาราง และ คอลัมน์
+  ใช้ _ แยกคำ
+  
+
+INTEGER 	== จำ นวนเต็ม ใช้คำนวนได้
 VARCHAR    == เก็บข้อความที่ไม่ยาว สามารถตั้งจำกัดตัวอักษรได้
 TEXT 		== เก็บข้อความที่มีความยาวมาก ไม่จำกัดตัวอักษร
 BLOB	     == เก็บภาพ หรือ ไฟล์
 REAL 	     == เก็บเลขทศนิยมไม่ระบุว่า ทศนิยมกี่ตำแหน่ง ดับเบิล โฟลท
 NUMERIC    == จำ นวนเต็มที่ระบุทศนิยมได้ ระบุตำแหน่งทศนิยมแน่นอน หริอค่าบุรี จริง เทจ หรือ ค่าเดท วันเวลา
+FLOAT      == เลขที่มทศนิยมไม่จำ กัดตำแหน่ง หรือไมไต้องระบุจำนวนทศนิยมแน่นอน
 
 NN   == ห้ามมีค่าว่าง
 PK   == คีหลักที่ไม่ซ้ำ
@@ -262,12 +270,50 @@ ON products.type_id = categories.id
 	
 
 
-	
+
+##########################
+
+CTRL + ENTER = run sql script in mysql http
+ตั้งค่า ใส่ ; ท้ายประโยค อัตโนมัตไว้
+
+// สร้าง DATABASE
+CREATE DATABASE ชื่อ db ที่จะสร้าง; 
+DROP DATABASE databasename;
+
+CREATE DATABASE IF NOT EXISTS ชื่อ db ที่จะสร้าง 
+  -IF NOT EXISTS  == ถ้าไม่มีอยู่ ให้สร้าง  
+
+CREATE DATABASE IF NOT EXISTS dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+  - ตั้งภาษาเริ่มต้น
+
+USE database_name = ใช้ เพื่อเข้า db ที่จะสร้าง table ต่อ ไม่แน่ใจว่าใช้ยังไง
+ไปใช้ query ใน db นั้น เพื่อสร้าง table ต่อไป
+
+// สร้าง TABLE
+CREATE TABLE table_naem (
+	id int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(100) NOT NULL,
+	email VARCHAR(100) ,
+	password TEXT NOT NULL 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+
+// เชื่อมคอลั่มตาราง ด้วย PK FK
+// ALTER == แก้ไขตาราง edit table
+สร้าง คอลัมน์ FK ก่อน 
+ALTER TABLE product ADD fk_user_id INT หรือ INTEGER(100) NOT NULL 
+AFTER ชื่อคอลัมน์ที่จะให้ คอมลั่มที่กำลังสร้่างอยู่นี้ไปวางไว้ข้างหลัง;  == สร้างไว้รอเชื่อม หรือ ต้องสร้างก่อนเชื่อม
+
+// code ใช้เชื่อม
+ALTER TABLE products 			== ชื่อ table ที่จะสร้าง FK
+ADD CONSTRAINT fk_user_id_fk    == ห้ามนำชื่อนี้ (fk_user_id_fk) ไปตั้งใน เป็นคอลัมน์ ใน tebal อื่น
+FOREIGN KEY (fk_user_id)		== ชื่อคอลั่ม FK ที่สร้างไว้ก่อนหน้าแล้ว
+REFERENCES users(user_id);		== อ้างอิง หรือ เชื่อกับ table_naem(และคอลัมน์ PK ใหนใน table_name)
+ON DELETE CASCADEและON UPDATE CASCADE  == ให้ เมื่อ ลบ หรือ อัพเดท Pk Fk จะเปลี่ยนตาม
+- ลบข้อจำกัดก่อน ไม่งั้นจะลบ คอลัมน์ FK ไม่ได้
+ALTER TABLE table_name DROP CONSTRAINT ข้อจำกัดที่ตั้งไว้ก่อนหน้า
 
 
-
-
-	
+ onDelete: "cascade"	
 
 
 
