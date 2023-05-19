@@ -278,13 +278,17 @@ CTRL + ENTER = run sql script in mysql http
 
 // สร้าง DATABASE
 CREATE DATABASE ชื่อ db ที่จะสร้าง; 
-DROP DATABASE databasename;
 
 CREATE DATABASE IF NOT EXISTS ชื่อ db ที่จะสร้าง 
   -IF NOT EXISTS  == ถ้าไม่มีอยู่ ให้สร้าง  
 
+    // fulset
 CREATE DATABASE IF NOT EXISTS dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
   - ตั้งภาษาเริ่มต้น
+
+// ลบ DATABASE กับ TABLE
+DROP DATABASE database_name;
+DROP TABLE tabal_name;
 
 USE database_name = ใช้ เพื่อเข้า db ที่จะสร้าง table ต่อ ไม่แน่ใจว่าใช้ยังไง
 ไปใช้ query ใน db นั้น เพื่อสร้าง table ต่อไป
@@ -297,6 +301,11 @@ CREATE TABLE table_naem (
 	password TEXT NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 
+// สร้างคอลัมน์
+ALTER TABLE `tabal_name` ADD `ขื่อคอลัมน์ที่จะเพิ่ม` INT(20) NOT NULL AFTER `ชื่อคอลัมน์ที่จะวางไว้ข้างหลัง`;
+// ลบคอลัมน์
+ALTER TABLE `user` DROP  COLUMN test
+
 // เชื่อมคอลั่มตาราง ด้วย PK FK
 // ALTER == แก้ไขตาราง edit table
 สร้าง คอลัมน์ FK ก่อน 
@@ -307,18 +316,50 @@ AFTER ชื่อคอลัมน์ที่จะให้ คอมลั�
 ALTER TABLE products 			== ชื่อ table ที่จะสร้าง FK
 ADD CONSTRAINT fk_user_id_fk    == ห้ามนำชื่อนี้ (fk_user_id_fk) ไปตั้งใน เป็นคอลัมน์ ใน tebal อื่น
 FOREIGN KEY (fk_user_id)		== ชื่อคอลั่ม FK ที่สร้างไว้ก่อนหน้าแล้ว
-REFERENCES users(user_id);		== อ้างอิง หรือ เชื่อกับ table_naem(และคอลัมน์ PK ใหนใน table_name)
-ON DELETE CASCADEและON UPDATE CASCADE  == ให้ เมื่อ ลบ หรือ อัพเดท Pk Fk จะเปลี่ยนตาม
+REFERENCES users(user_id);		== teble และ คอลั่ม ของ PK ที่ดึงมา -อ้างอิง หรือ เชื่อมกับ table_naem(และคอลัมน์ PK ใหนใน table_name)
+ON DELETE CASCADE AND ON UPDATE CASCADE  == ให้ เมื่อ ลบ หรือ อัพเดท Pk Fk จะเปลี่ยนตาม
+  - onDelete: "cascade" = ใช้กับ squelizer-cli
+
 - ลบข้อจำกัดก่อน ไม่งั้นจะลบ คอลัมน์ FK ไม่ได้
 ALTER TABLE table_name DROP CONSTRAINT ข้อจำกัดที่ตั้งไว้ก่อนหน้า
 
+//// เว็บ เชื่อม PK - FK
+    https://www.w3schools.com/sql/sql_foreignkey.asp
+    
+	// สร้าง TABLE ไม่เชื่อม PK FK  
+CREATE TABLE cpu_amd(
+    cpu_amd_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
- onDelete: "cascade"	
+	// สร้าง TABLE พร้อมเชื่อม PK FK
+CREATE TABLE cpu_intel(
+    cpu_intel_id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    price INT(10) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    fk_cpu_for_intel_id INT(10) NOT NULL,
+    PRIMARY KEY(cpu_intel_id),
+    CONSTRAINT fk_cpu_for_intel FOREIGN KEY(fk_cpu_for_intel_id) REFERENCES cpu(cpu_id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
 
+ALTER TABLE cpu
+ADD CONSTRAINT fk_product
+FOREIGN KEY (fk_product_id)
+REFERENCES product(product_id)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
+// Sequelize คำสั่ง
+    freezeTableName: true,false,  === ตรึง หรือ ฟิกตาราง ห้ามเพิ่ม โครงาร้่างของตารางโดยอัตโนมัต
+    allowNull: true,false,  === อนุญาตให้ ค่าว่าง หรือไม่
 
-
-
+// ใช้ รีเซ็ตค่า PK เมื่อลบข้อมูลในตารางทั้งหมด แล้วอยากให้ id นับ 1 ใหม่
+   ALTER TABLE brands AUTO_INCREMENT = 0
 
 
 
